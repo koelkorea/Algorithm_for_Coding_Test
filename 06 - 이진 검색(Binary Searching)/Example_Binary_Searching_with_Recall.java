@@ -4,9 +4,10 @@ import java.util.Scanner;
 
 public class Example_Binary_Searching_with_Recall {
 
-	// 이진 탐색 소스코드 구현(재귀 함수)
+    // 이진 탐색 소스코드 구현(재귀 함수)
     public static int binarySearch(int[] arr, int target, int start, int end) {
     	
+	// 만약 배열 시작위치 > 배열 끝위치라면... -1을 리턴한다(배열에 target이 없는 경우 -1배출 <- 핵심코드)
         if (start > end) return -1;
         
         int mid = (start + end) / 2;
