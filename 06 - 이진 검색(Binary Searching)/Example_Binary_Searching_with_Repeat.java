@@ -7,6 +7,7 @@ public class Example_Binary_Searching_with_Repeat {
     // 이진 탐색 소스코드 구현(반복문)
     public static int binarySearch(int[] arr, int target, int start, int end) {
     	
+	// 배열에서 target을 찾는 반복문(시작위치가 끝위치보다 크지 않는한 계속)
         while (start <= end) {
         	
             int mid = (start + end) / 2;
@@ -21,6 +22,7 @@ public class Example_Binary_Searching_with_Repeat {
             else start = mid + 1; 
         }
         
+	// 위의 반복문에서 target을 찾지 못한다면(= 시작위치 > 끝위치), -1을 리턴
         return -1;
     }
 
