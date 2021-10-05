@@ -5,8 +5,8 @@ import java.util.Scanner;
 /* 개선된 서로소(공통원소 없는 두 집합) 찾기 이론(= 기존 합치기 찾기 + 경로압축)
  * -> 개선점(시간복잡도 : N보다 작음 by 경로 압축) 
  * 	 : 일단 한번 해당 경로의 부모를 순차적으로 타고 올라가는 과정을 수행하면,
- * 	     그 최종결과값인 해당 노드의 최고 선조를 기록하여, 추후 해당 노드의 부모를 다시 찾을때, 
- * 	     순차적으로 부모를 찾아 거슬러가는걸 방지하고, 바로 최선조를 대령함 (= 시간복잡도 줄어둠)
+ * 	   그 최종결과값인 해당 노드의 최고 선조를 기록하여, 추후 해당 노드의 부모를 다시 찾을때, 
+ * 	   순차적으로 부모를 찾아 거슬러가는걸 방지하고, 바로 최선조를 대령함 (= 시간복잡도 줄어둠)
  * 
  * 
  * (경로 압축 알고리즘 : Find 찾기 함수를 재귀적 호출 -> 부모 테이블 갱신 = 다이나믹 프로그래밍)
@@ -16,7 +16,8 @@ public class Example_improved_Each_Other {
 
     // 노드의 개수(V)와 간선(Union 연산)의 개수(E) >> 노드의 개수는 최대 100,000개라고 가정
     public static int v, e;
-    public static int[] parent = new int[100001]; // 부모 테이블 초기화하기
+    // 각 요소의 최고 선조를 나타내는 테이블
+    public static int[] parent = new int[100001];
 
     // 특정 원소가 속한 집합을 찾기
     public static int findParent(int x) {
@@ -29,9 +30,9 @@ public class Example_improved_Each_Other {
         }
         
         /* 루트 노드가 아니라면(초기 입력된 배열값이 아니라면), 루트 노드를 찾을 때까지 재귀적으로 호출
-         * (경로압축 적용 : 이를 통해 바로 고대 선조를 찾아서 갱신 가능  = 다이나믹 프로그래밍)
+         * (경로압축 적용 : 이를 통해 한번에 바로 최고 고대 선조를 찾아서 갱신(저장) 가능  = 다이나믹 프로그래밍)
          */
-        return parent[x] = findParent(parent[x]);	// 초기화 된 parent[x] = x -> findparent(parent[x])로 현재까지 찾은 최선조를 해당 배열에 갱신
+        return parent[x] = findParent(parent[x]);	// 초기화 된 parent[x] = x -> findparent(parent[x])로 현재까지 찾은 최고 선조를 해당 배열에 갱신
         // return findParent(parent[x]);
         
     }
