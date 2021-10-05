@@ -5,9 +5,11 @@ import java.util.Scanner;
 /* 싸이클 판별하기(개선된 서로소(공통원소 없는 두 집합) 찾기 이론 발전형)
  *  
  * [매커니즘]
- *  : 제시된 노드를 이루는 두개의 수가 이미 같은 최선조를 두는 내부 그룹의 일원이면, 그건 싸이클이 발생했음을 의미함(내부그룹 = 싸이클을 이루는 노드의 일원)
- * 	  -> 단 결론적으로 해당 노드가 싸이클에 속하더라도, 노드가 처음으로 간선 관계를 정의하는 경우에 선언되는 순간에는 
- * 		 최선조가 자기자신(parent[x] = x)이므로 내부그룹의 일부라는 관계를 수립함
+ *  : 제시된 노드를 이루는 두개의 수가 이미 같은 최고 선조를 두는 내부 그룹의 일원이면, 
+ *    그건 싸이클이 발생했음을 의미함(내부그룹 = 싸이클을 이루는 노드의 일원)
+ *	-> 단 결론적으로 해당 노드가 싸이클에 속하더라도, 
+ *	   노드가 처음으로 간선 관계를 정의하는 경우에 선언되는 순간에는 
+ *	   최고 선조가 자기자신(parent[x] = x)이므로 내부그룹의 일부라는 관계를 수립함
  * 
  *  1. 각 간선을 하나씩 확인하고, 그 간선을 구성하는 노드 2개의 최선조를 확인
  *  	- IF 최선조가 다르면, Union
@@ -21,9 +23,10 @@ import java.util.Scanner;
  */
 public class Example_Cycle_Checking_With_Each_Other {
 
-	// 노드의 개수(V)와 간선(Union 연산)의 개수(E) >> 노드의 개수는 최대 100,000개라고 가정
+    // 노드의 개수(V)와 간선(Union 연산)의 개수(E) >> 노드의 개수는 최대 100,000개라고 가정
     public static int v, e;
-    public static int[] parent = new int[100001]; // 부모 테이블 초기화하기
+    // 각 요소의 최고 선조 테이블 초기화하기
+    public static int[] parent = new int[100001]; 
 
     // 특정 원소가 속한 집합을 찾기
     public static int findParent(int x) {
@@ -36,7 +39,7 @@ public class Example_Cycle_Checking_With_Each_Other {
         }
         
         /* 루트 노드가 아니라면(초기 입력된 배열값이 아니라면), 루트 노드를 찾을 때까지 재귀적으로 호출
-         * (경로압축 적용 : 이를 통해 바로 고대 선조를 찾아서 갱신 가능  = 다이나믹 프로그래밍)
+         * (경로압축 적용 : 이를 통해 바로 최고 고대 선조를 찾아서 갱신 가능 = 다이나믹 프로그래밍)
          */
         return parent[x] = findParent(parent[x]);// 초기화 된 parent[x] = x -> findparent(parent[x])로 현재까지 찾은 최선조를 해당 배열에 갱신
         // return findParent(parent[x]);
@@ -89,7 +92,7 @@ public class Example_Cycle_Checking_With_Each_Other {
             //	  (전체 흐름 상, 늦던 빠르던 싸이클이 되는 경우는 결국 제시된 수들이 내부 그룹임이 밝혀지기 마련이다)
             //	    
             if (findParent(a) == findParent(b)) { // a,b의 내부조상이 이미 같은것으로 판명되는 경우
-            									  //(새로 선언된 노드라면 unionparent 거치기 전이므로, 그 내용으로 갱신되는 경우에는 넘어감)
+            					  //(새로 선언된 노드라면 unionparent 거치기 전이므로, 그 내용으로 갱신되는 경우에는 넘어감)
             	
             	// 싸이클이 발생했음을 선언하고 
                 cycle = true;
