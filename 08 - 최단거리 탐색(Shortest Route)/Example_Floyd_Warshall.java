@@ -3,8 +3,13 @@ package code08.Shortest_Route;
 import java.util.Arrays;
 import java.util.Scanner;
 
-//플로이드 워셜 알고리즘(다이나믹 프로그래밍 + 3중 for문을 통한 대조를 통해..) : 각 지점에서(X좌표) 모든 위치(Y좌표)로의 최단루트값을 담은 배열(주어진 지도배열 갱신)을 구하는 알고리즘
-//(시간복잡도 : V^3) BUT! 코드 자체는 가장 단순 + 직관적이고, 한번 끝내면 삽질할 이유도 없다.
+/* [플로이드 워셜 알고리즘] 
+   : 각 지점에서(X좌표) 모든 위치(Y좌표)로의 최단루트값을 담은 배열(주어진 지도배열 갱신)을 구하는 알고리즘
+     (다이나믹 프로그래밍 + 3중 for문을 통한 대조를 통해..) 
+     
+    <시간복잡도>
+    : 3중 FOR문으로 인한 V^3....  BUT! 코드 자체는 가장 단순 + 직관적이고, 한번 끝내면 삽질할 이유도 없다.
+*/
 public class Example_Floyd_Warshall {
 
     public static final int INF = (int) 1e9; // 무한을 의미하는 값으로 10억을 설정
