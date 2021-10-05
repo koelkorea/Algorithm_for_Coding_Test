@@ -34,7 +34,6 @@ public class Example_Bellman_Ford_with_array {
     	// 시작 노드에 대해서 초기화
     	d[start] = 0;
     	
-    	
         // 전체 n - 1번의 라운드(round)를 반복
         for (int x = 0; x < n; x++) {
         	
@@ -87,15 +86,14 @@ public class Example_Bellman_Ford_with_array {
         m = sc.nextInt();
         
         // 좌표별 거리정보 무한으로 초기화
-		for(int i = 0; i < n; i++) {
+	for(int i = 0; i < n; i++) {
 			
-	        Arrays.fill(edges[i], INF);
+		Arrays.fill(edges[i], INF);
 	        
 	        
-		}
+	}
         
-		
-		//System.out.println(Arrays.deepToString(edges));
+	//System.out.println(Arrays.deepToString(edges));
 		
         // 모든 간선 정보 및 거리를 입력받기
         for (int i = 0; i < m; i++) {
@@ -108,7 +106,6 @@ public class Example_Bellman_Ford_with_array {
             edges[a-1][b-1] = c;
             
         }
-        
         
         // 최단 거리 테이블을 모두 무한으로 초기화
         Arrays.fill(d, INF);
