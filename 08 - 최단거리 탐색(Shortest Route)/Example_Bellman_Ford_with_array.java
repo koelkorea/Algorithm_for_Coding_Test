@@ -3,12 +3,22 @@ package code08.Shortest_Route;
 import java.util.Arrays;
 import java.util.Scanner;
 
-// [벨만-포드2 : 배열로 구현] : 간선의 갯수인 M만큼만 훍어보면 되는 1번째 방법에 비해 시간복잡도가 높다...
-// 벨만-포드 알고리즘(다익스트라 알로리즘 + 간선 비용 음수 존재까지 가정 = 다익스트라 확장판) : 현재 start 지점에서 모든 위치로의 최단루트값을 담은 배열을 구하는 알고리즘
-// (벨만-포드 알고리즘 시간 복잡도(음수까지 처리 가능하나 다익스트라 E * logV 보단 느리다) : V*501*501 = 노드 * 간선)
+/* [벨만-포드 알고리즘2 : 배열로 구현]
+   : 간선의 갯수인 M만큼만 훍어보면 되는 1번째 방법인 2중 for문(N*M)에 비해 3중 for문(N*2차원 그래프 X축*2차원 그래프 Y축) 실행으로 시간복잡도가 높다... 
+
+   시간복잡도 계산 (N : 노드개수, M : 간선개수, 501 : 2차원 그래프 축 하나의 길이(배열을 통해 구현했음으로 정해진 길이가 필요했음))
+    - 오리지날 벨만-포드 : N*M
+    - 배열 벨만-포드	   : N*501*501 
+
+   [벨만-포드 알고리즘?] 
+   : 현재 start 지점에서 방향성을 가지는 길을 통한 모든 위치로의 최단루트값을 담은 배열을 구하는 알고리즘
+     (다익스트라 알로리즘 + 간선 비용 음수 존재까지 가정 = 다익스트라 확장판) 
+     
+   오리지날 벨만-포드 시간 복잡도
+   : 음수까지 처리 가능하나 다익스트라 E * logV 보단 느리다 */
 public class Example_Bellman_Ford_with_array {
 	
-	public static final int INF = (int) 1e9; // 무한을 의미하는 값으로 10억을 설정
+    public static final int INF = (int) 1e9; // 무한을 의미하는 값으로 10억을 설정
 	
     // 노드의 개수(N), 간선의 개수(M)  // 노드의 개수는 최대500개라고 가정
     public static int n, m;
@@ -18,7 +28,6 @@ public class Example_Bellman_Ford_with_array {
 
     // 각 노드의 최단 거리 테이블 만들기
     public static int[] d = new int[501];
-    
     
     static boolean bellmanford(int start) {
     	
