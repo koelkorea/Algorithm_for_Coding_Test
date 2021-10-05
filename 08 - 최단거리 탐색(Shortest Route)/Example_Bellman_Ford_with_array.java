@@ -15,7 +15,11 @@ import java.util.Scanner;
      (다익스트라 알로리즘 + 간선 비용 음수 존재까지 가정 = 다익스트라 확장판) 
      
    오리지날 벨만-포드 시간 복잡도
-   : 음수까지 처리 가능하나 다익스트라 E * logV 보단 느리다 */
+   : 음수까지 처리 가능하나 다익스트라 E * logV 보단 느리다 
+   
+   <음의 싸이클 판정 매커니즘> : 마지막 순간까지도 계속해서 각 노드의 최단거리 기록 DP가 갱신되는 경우를 잡아냄(음의 싸이클 말고 그럴일이 없음)
+   
+*/
 public class Example_Bellman_Ford_with_array {
 	
     public static final int INF = (int) 1e9; // 무한을 의미하는 값으로 10억을 설정
