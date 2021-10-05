@@ -17,7 +17,7 @@ import java.util.Scanner;
 	6. 3~4를 만족할떄까지 반복
 
 
-    향상된 녀석의 최악의 시간복잡도
+    <향상된 녀석의 최악의 시간복잡도>
     : M * logN (글자 거슬러 올라가는 속도가 2의 제곱으로 빨라졌기에 가능)
 */
 public class Example_LCA_improved {
